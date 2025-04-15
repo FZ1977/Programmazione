@@ -1,47 +1,32 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sun Nov  5 17:08:20 2023
+Created on Fri Mar 25 18:48:10 2022
 
-@author: Fabio Zangari
-Palindromo di una stringa.
+Scrivere un programma che stampa Vero 
+se la parola inserita è palindroma.
+
+@author: fabio
 """
 
-def Palindromo_v1( s ):
-    appo = ''
-    for c in s:
-        appo = c + appo
-    
-    if s == appo:
-        return True
-    else:
-        return False
+a = input('Inserisci la parola da verifica:')
+n = len(a)
+i = 0
+pal = ''
+test = True
 
-def Palindromo_v2( s ):
-    appo = []
-    s = list(s)
+try:
+    while i < n and test:
+        if a[i] == a[n-1]:
+            n -= 1
+            i += 1
+            test = True
+        else:
+            test = False
+            n -= 1
+            i += 1
     
-    n = len(s)
-    
-    appo = s[::-1]
-    
-    # Forma più costosa
-    #for i in range(n-1,-1,-1):
-    #    appo.append(s[i])
+    if test == True:
+        print('Vero')
+except NameError:
+    print('Inserire una parola da verificare.')    
         
-    if s == appo:
-        return True
-    else:
-        return False
-    
-    
-s = input("Inserisci stringa: ")
-
-if Palindromo_v1(s) == True:
-    print(s + " e' palindromo.")
-else:
-    print(s + " non e' un palindromo.")
-    
-if Palindromo_v2(s) == True:
-    print(s + " e' palindromo.")
-else:
-    print(s + " non e' un palindromo.")

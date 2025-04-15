@@ -1,45 +1,29 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sun Nov 19 11:28:50 2023
+Created on Sun Mar 27 15:50:20 2022
+ALGORITMO: MERGE SORT.
 
-@author: Fabio Zangari
-Algoritmo di ordinamento MergeSort.
+Precondizione: a una lista numerica
+Ordina a[lx:rx]
+    
+@author: fabio
 """
 
-def Merge(a,a_sx,a_dx):
-    # Merge
-    i, j, k = 0, 0, 0
-    while i < len(a_sx) and j < len(a_dx):
-        if a_sx[i] > a_dx[j]:
-            a[k] = a_dx[j]
-            j += 1
-            k += 1
-        else:
-            a[k] = a_sx[i]
-            i += 1
-            k += 1
-            
-    while i < len(a_sx):
-        a[k] = a_sx[i]
-        i += 1
-        k += 1
+def merge_sort(a, lx, rx):
+    '''
+    Precondizione: a una lista numerica
+    Ordina a[lx:rx]
+    '''
     
-    while j < len(a_dx):
-        a[k] = a_dx[j]
-        j += 1
-        k += 1
+    if lx <= rx-2: # almeno due elementi in a[lx:rx]
+        cx = (rx+lx)//2
+        merge_sort(a, lx, cx)
+        merge_sort(a, cx, rx)
+        a = merge(a, lx, cx, rx)
 
-
-def MergeSort(a):
-    if len(a)>1:
-        a_sx = a[:len(a)//2]
-        a_dx = a[len(a)//2:]
-        MergeSort(a_sx) # valore di sinistra
-        MergeSort(a_dx) # valore di destra
-        Merge(a,a_sx,a_dx)
-
-    
-a=[23,6,87,4,21,32,97,3,2,7,9]
+#con questa prova non funziona
+a = [4,2,3,7,4,3,4,5,2,3,0,9,5,4,8]
+n = len(a)
+merge_sort(a, 0, n)
 print(a)
-MergeSort(a)
-print(a)
+
