@@ -1,74 +1,54 @@
-/* Creare una funzione che prende in input due array ordinati e ritorna
-*  un array ordinato.
-*/
+/*Prende tre array ordinati in input e li ordina in un array*/
 
 #include <stdio.h>
-#include <stdlib.h>
-
-int * MergeArray(int *, int, int *, int);
+#include <string.h>
 
 int main(){
-    int a[] = {1,3,5,7,9};
-    int b[] = {2,4,6,8};
-    int n = sizeof(a)/sizeof(int);
-    int m = sizeof(b)/sizeof(int);
-    int *p;
+    int a[] = {1,3,6,8,11,13,18,20};
+    int b[] = {2,4,5,9,12,14,16,19,21};
+    int c[] = {7,10,15,17,22,23,24,25};
+    int d[25];
+    int i = 0, i_a = 0, i_b = 0, i_c = 0;
 
-    // passo le due liste dalla funzione
-    p = MergeArray(a, n, b, m);
-    p = p - (m + n);
-
-    printf("Qui uso la sintassi cone indice.\n");
-    for(int i=0; i<(n+m); i++){
-        printf("%d ",p[i]);
-    }
-    printf("\n");
-    printf("Qui uso la sintassi con puntatori.\n");
-    for(int i=0; i<(n+m); i++){
-        printf("%d ",*p);
-        p++;
-    }
-    p = p - (m + n);
-}
-
-int * MergeArray(int *a, int n, int *b, int m){
-    int i = 0, j = 0;
-    int *p;
-    p = malloc((n+m)*sizeof(int));
-
-    while(i<n && j<m){
-        if(*a > *b){
-            *p = *b;
-            p++;
-            b++;
-            j += 1;
+    while( i_a < 8 && i_b < 9 && i_c < 8 ){
+        if(a[i_a] < b[i_b] && a[i_a] < c[i_c]){
+            d[i] = a[i_a];
+            i_a++;
+            i++;
         }
-        else
-        {
-            *p = *a;
-            p++;
-            a++;
-            i += 1;
-        }
-    }
 
-    if(i < n){
-        for(; i<n; i++){
-            *p = *a;
-            p++;
-            a++;
+        if(b[i_b] < a[i_a] && b[i_b] < c[i_c]){
+            d[i] = b[i_b];
+            i_b++;
+            i++;
+        }
+
+        if(c[i_c] < a[i_a] && c[i_c] < b[i_b]){
+            d[i] = c[i_c];
+            i_c++;
             i++;
         }
     }
 
-    if(j < m){
-        for(; i<m; j++){
-            *p = *b;
-            p++;
-            b++;
-            j++;
-        }
+    while(i_a < 8){
+        d[i] = a[i_a];
+        i_a++;
+        i++;
     }
 
-    return p;
+    while(i_b < 9){
+        d[i] = b[i_b];
+        i_b++;
+        i++;
+    }
+
+    while(i_c < 8){
+        d[i] = c[i_c];
+        i_c++;
+        i++;
+    }
+
+    for(i = 0; i < 25; i++){
+        printf("%d ", d[i]);
+    }
 }
