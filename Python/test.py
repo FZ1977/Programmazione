@@ -1,16 +1,24 @@
-#!/usr/bin/python
+import sys
+import os
 
-def tribonacci(signature, n):
-    res=0
-    a=0
-    b=3
-    while b < n:
-        for num in signature[a:b]:
-            res=res+num
-        signature.append(res)
-        res=0
-        a=a+1
-        b=b+1
-    return signature
+MyPath = os.path.abspath(os.getcwd())
 
-print tribonacci([1,1,1],10)
+print(MyPath)
+
+def Funzione1():
+    print("Sono nella Funzione1")
+    ToAddrFile=open("c:\FileToAddr.lst","r")
+    ListToAddrFile = list(ToAddrFile.read().split(" "))
+    ToAddrFile.close()
+    return ListToAddrFile
+
+def Funzione2(valore1, valore2):
+    print(valore1)
+    print(valore2)
+
+def ComeSiUsa():
+    print("Sei entrato nella funzione ComeSiUsa")
+
+
+print(len(sys.argv) - 1)
+print(type(len(sys.argv)))
